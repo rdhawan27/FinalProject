@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${title}">My Cheeses</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body class="container">
+
+<h1 th:text = "${title}">Seed Inventor Manager</h1>
+
+<table class="table" >
+    <tr>
+        <td> Crop</td>
+        <td>Pedigree</td>
+        <td>Season</td>
+        <td>Quantity Received</td>
+        <td>Qunatity Used</td>
+    </tr>
+    <tr th:each="inventory : ${inventory}" >
+        <td th:text="${inventory.crop}"></td>
+        <td th:text="${inventory.pedigree}"></td>
+        <td th:text="${inventory.season}"></td>
+        <td th:text="${inventory.received}"></td>
+        <td th:text="${inventory.used}"></td>
+
+    </tr>
+
+
+</table>
+
+</body>
+</html>
