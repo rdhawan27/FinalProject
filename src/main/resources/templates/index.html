@@ -19,6 +19,7 @@
         <td>Season</td>
         <td>Quantity Received</td>
         <td>Qunatity Used</td>
+        <td> Remove</td>
     </tr>
     <tr th:each="inventory : ${inventory}" >
         <td th:text="${inventory.crop}"></td>
@@ -26,6 +27,7 @@
         <td th:text="${inventory.season}"></td>
         <td th:text="${inventory.received}"></td>
         <td th:text="${inventory.used}"></td>
+        <td ><input type="checkbox" th:id=" ${inventory.id}"/></td>
 
     </tr>
 

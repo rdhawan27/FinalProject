@@ -5,6 +5,8 @@ package org.launchcode.finalproject.model;
  */
 public class Inventory {
 
+    private int id;
+
     private String crop;
 
     private String pedigree;
@@ -61,6 +63,14 @@ public class Inventory {
 
     public void setUsed(String used) {
         this.used = used;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
 
