@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${title}">My </title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body class="container">
+
+<h1 th:text = "${title}">Seed Inventor Manager</h1>
+
+<a href ="/inventory/add">Add</a> |
+<a href ="/inventory/remove">Remove</a>
+
+<p></p>
+<form method= "post" action="/inventory/search">
+    <table class="table" >
+        <tr>
+            <td ><select onchange="this.form.submit()" th:field="*{distinctcrop}">
+                <option value="All">All Crop</option>
+                <option th:each="dropDownItem : ${distinctcrop}"
+                        th:value="${dropDownItem}"
+                        th:text="${dropDownItem}" />
+            </select>Crop</td>
+            <td>Pedigree</td>
+            <td>Season</td>
+            <td>Quantity Received</td>
+            <td>Quantity Used</td>
+            <td>Quantity Left</td>
+
+        </tr>
+        <tr th:each="inventory : ${inventory}" >
+            <td th:text="${inventory.crop}"></td>
+            <td th:text="${inventory.pedigree}"></td>
+            <td th:text="${inventory.season}"></td>
+            <td th:text="${inventory.received}"></td>
+            <td th:text="${inventory.used}"></td>
+            <td th:text="${inventory.getRemainingQuantity()}"></td>
+
+
+        </tr>
+
+
+    </table>
+</form>
+</body>
+</html>

@@ -5,7 +5,7 @@ package org.launchcode.finalproject.model;
  */
 public class Inventory {
 
-    private int id;
+    private int invId;
 
     private String crop;
 
@@ -13,16 +13,37 @@ public class Inventory {
 
     private String season;
 
-    private String received;
+    private int received;
 
-    private String used;
+    private int used;
 
-    public Inventory(String crop, String pedigree, String season, String received, String used) {
+    private static int nextId=1;
+
+
+
+    public Inventory(String crop, String pedigree, String season, int received, int used ) {
+        invId=nextId;
+        nextId+=1;
         this.crop = crop;
         this.pedigree = pedigree;
         this.season = season;
         this.received = received;
         this.used = used;
+    }
+
+    public Inventory(int invId){
+        invId=nextId;
+        nextId+=1;
+    }
+    public int getRemainingQuantity(){
+        return this.getReceived()- this.getUsed();
+    }
+    public int getInvId() {
+        return invId;
+    }
+
+    public void setInvId(int invId) {
+        this.invId = invId;
     }
 
     public String getCrop() {
@@ -49,28 +70,19 @@ public class Inventory {
         this.season = season;
     }
 
-    public String getReceived() {
+    public int getReceived() {
         return received;
     }
 
-    public void setReceived(String received) {
+    public void setReceived(int received) {
         this.received = received;
     }
 
-    public String getUsed() {
+    public int getUsed() {
         return used;
     }
 
-    public void setUsed(String used) {
+    public void setUsed(int used) {
         this.used = used;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 }
-

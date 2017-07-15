@@ -11,29 +11,19 @@
 <body class="container">
 
 <h1 th:text = "${title}">Seed Inventor Manager</h1>
-
-<a href ="/inventory/add">Add</a> |
-<a href ="/inventory/remove">Remove</a>
-
-<p></p>
-<form method="post"  action="/inventory/search">
+<form method="post" >
 <table class="table" >
     <tr>
-        <td ><select id="cropoptions" name="cropoptionid" onchange="this.form.submit()" th:field="*{distinctcrop}">
-            <option value="All">All Crop</option>
-            <option th:each="dropDownItem : ${distinctcrop}"
-                    th:value="${dropDownItem}"
-                    th:text="${dropDownItem}"
-            />
-        </select>Crop</td>
+        <td> Crop</td>
         <td>Pedigree</td>
         <td>Season</td>
         <td>Quantity Received</td>
         <td>Quantity Used</td>
         <td>Quantity Left</td>
 
+        <td>Remove</td>
     </tr>
-    <tr th:each="inventory : ${inventory}" >
+    <tr  th:each="inventory : ${inventory}" >
         <td th:text="${inventory.crop}"></td>
         <td th:text="${inventory.pedigree}"></td>
         <td th:text="${inventory.season}"></td>
@@ -41,11 +31,13 @@
         <td th:text="${inventory.used}"></td>
         <td th:text="${inventory.getRemainingQuantity()}"></td>
 
-
+        <td ><input type="checkbox" name="invIds" th:value="${inventory.invId}" th:id="${inventory.invId}"/></td>
     </tr>
 
 
 </table>
+    <p style="text-align:left;"><input type="submit" value="Remove" style="position: absolute; right;"/></p>
 </form>
+
 </body>
 </html>
