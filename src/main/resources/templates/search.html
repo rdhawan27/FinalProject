@@ -18,18 +18,21 @@
 <p></p>
 <form method= "post" action="/inventory/search">
     <table class="table" >
-        <tr>
-            <td ><select onchange="this.form.submit()" th:field="*{distinctcrop}">
+        <tr ><select field="*{distinctcrop}" >
+            <td>
                 <option value="All">All Crop</option>
                 <option th:each="dropDownItem : ${distinctcrop}"
                         th:value="${dropDownItem}"
-                        th:text="${dropDownItem}" />
-            </select>Crop</td>
+                        th:text="${dropDownItem}"
+                        th:name="${dropDownItem}"
+                />
+            </select >Crop</td>
             <td>Pedigree</td>
             <td>Season</td>
             <td>Quantity Received</td>
             <td>Quantity Used</td>
             <td>Quantity Left</td>
+
 
         </tr>
         <tr th:each="inventory : ${inventory}" >
@@ -45,6 +48,7 @@
 
 
     </table>
+    <input type = "submit"/>
 </form>
 </body>
 </html>

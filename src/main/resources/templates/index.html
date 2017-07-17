@@ -17,35 +17,35 @@
 
 <p></p>
 <form method="post"  action="/inventory/search">
-<table class="table" >
-    <tr>
-        <td ><select id="cropoptions" name="cropoptionid" onchange="this.form.submit()" th:field="*{distinctcrop}">
-            <option value="All">All Crop</option>
-            <option th:each="dropDownItem : ${distinctcrop}"
-                    th:value="${dropDownItem}"
-                    th:text="${dropDownItem}"
-            />
-        </select>Crop</td>
-        <td>Pedigree</td>
-        <td>Season</td>
-        <td>Quantity Received</td>
-        <td>Quantity Used</td>
-        <td>Quantity Left</td>
+    <table class="table" >
+        <tr>
+            <td th:field="*{distinctcrop}" ><select class="form-control" style= "max-width:100px;" name="cropOptionName" onchange="this.form.submit()" >
+                <option value="All">All Crop</option>
+                <option th:each="dropDownItem : ${distinctcrop}"
+                        th:value="${dropDownItem}"
+                        th:text="${dropDownItem}"
+                />
+            </select></td>
+            <td>Pedigree</td>
+            <td>Season</td>
+            <td>Quantity Received</td>
+            <td>Quantity Used</td>
+            <td>Quantity Left</td>
 
-    </tr>
-    <tr th:each="inventory : ${inventory}" >
-        <td th:text="${inventory.crop}"></td>
-        <td th:text="${inventory.pedigree}"></td>
-        <td th:text="${inventory.season}"></td>
-        <td th:text="${inventory.received}"></td>
-        <td th:text="${inventory.used}"></td>
-        <td th:text="${inventory.getRemainingQuantity()}"></td>
-
-
-    </tr>
+        </tr>
+        <tr th:each="inventory : ${inventory}" >
+            <td th:text="${inventory.crop}"></td>
+            <td th:text="${inventory.pedigree}"></td>
+            <td th:text="${inventory.season}"></td>
+            <td th:text="${inventory.received}"></td>
+            <td th:text="${inventory.used}"></td>
+            <td th:text="${inventory.getRemainingQuantity()}"></td>
 
 
-</table>
+        </tr>
+
+
+    </table>
 </form>
 </body>
 </html>

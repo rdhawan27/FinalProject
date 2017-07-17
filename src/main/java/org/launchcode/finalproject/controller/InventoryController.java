@@ -59,11 +59,12 @@ public class InventoryController {
         return "redirect:";
     }
     @RequestMapping(value="search", method= RequestMethod.POST)
-    public String searchInventory(@RequestParam String distinctcrop){
+    public String searchInventory(@RequestParam String cropOptionName, Model model){
 
-        System.out.print("cropName - "+cropoptionid);
+        System.out.print("cropName - "+cropOptionName);
+        model.addAttribute("selectedCrop" , cropOptionName);
 
-        return cropoptionid;
+        return "index";
 
     }
 
