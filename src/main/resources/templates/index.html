@@ -21,7 +21,7 @@
         <tr>
             <td th:field="*{distinctcrop}" ><select class="form-control" style= "max-width:100px;" name="cropOptionName" onchange="this.form.submit()" >
                 <option value="All">All Crop</option>
-                <option th:each="dropDownItem : ${distinctcrop}"
+                <option th:each="dropDownItem : ${distinctCrop}"
                         th:value="${dropDownItem}"
                         th:text="${dropDownItem}"
                 />
@@ -39,7 +39,7 @@
             <td th:text="${inventory.season}"></td>
             <td th:text="${inventory.received}"></td>
             <td th:text="${inventory.used}"></td>
-            <td th:text="${inventory.getRemainingQuantity()}"></td>
+            <td th:text="${inventory.qLeft}"></td>
 
 
         </tr>

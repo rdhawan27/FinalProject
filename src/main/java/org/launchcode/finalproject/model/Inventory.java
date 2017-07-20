@@ -1,10 +1,17 @@
 package org.launchcode.finalproject.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * Created by anu on 7/10/2017.
  */
+@Entity
 public class Inventory {
 
+    @Id
+    @GeneratedValue
     private int invId;
 
     private String crop;
@@ -17,27 +24,29 @@ public class Inventory {
 
     private int used;
 
-    private static int nextId=1;
+    private int qLeft;
 
 
-
-    public Inventory(String crop, String pedigree, String season, int received, int used ) {
-        invId=nextId;
-        nextId+=1;
+    public Inventory(String crop, String pedigree, String season, int received, int used, int qLeft) {
         this.crop = crop;
         this.pedigree = pedigree;
         this.season = season;
         this.received = received;
         this.used = used;
+        this.qLeft=qLeft;
     }
 
-    public Inventory(int invId){
-        invId=nextId;
-        nextId+=1;
+    public Inventory(){
     }
-    public int getRemainingQuantity(){
-        return this.getReceived()- this.getUsed();
+
+    public void setqLeft(int qLeft) {
+        this.qLeft = qLeft;
     }
+
+    public int getqLeft() {
+        return qLeft;
+    }
+
     public int getInvId() {
         return invId;
     }

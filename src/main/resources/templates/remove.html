@@ -14,13 +14,12 @@
 <form method="post" >
 <table class="table" >
     <tr>
-        <td> Crop</td>
+        <td>Crop</td>
         <td>Pedigree</td>
         <td>Season</td>
         <td>Quantity Received</td>
         <td>Quantity Used</td>
         <td>Quantity Left</td>
-
         <td>Remove</td>
     </tr>
     <tr  th:each="inventory : ${inventory}" >
@@ -29,12 +28,9 @@
         <td th:text="${inventory.season}"></td>
         <td th:text="${inventory.received}"></td>
         <td th:text="${inventory.used}"></td>
-        <td th:text="${inventory.getRemainingQuantity()}"></td>
-
+        <td th:text="${inventory.qLeft}"></td>
         <td ><input type="checkbox" name="invIds" th:value="${inventory.invId}" th:id="${inventory.invId}"/></td>
     </tr>
-
-
 </table>
     <p style="text-align:left;"><input type="submit" value="Remove" style="position: absolute; right;"/></p>
 </form>
