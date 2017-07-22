@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
-    <title th:text="${title}">My Cheeses</title>
+    <title th:text="${title}">My </title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -10,28 +10,23 @@
 
 <body class="container">
 
-<h1 th:text = "${title}">Seed Inventor Manager</h1>
+<h1 th:text = "${title}">Seed Inventory Manager</h1>
 
+<a href ="/inventory/">Home</a> |
 <a href ="/inventory/add">Add</a> |
-<a href ="/inventory/remove">Remove</a>
+<a href ="/inventory/remove">Remove</a> |
+<a href ="/inventory/search">Search</a>
 
 <p></p>
-<form method="post"  action="/inventory/search">
+<form method= "post" >
     <table class="table" >
         <tr>
-            <td th:field="*{distinctcrop}" ><select class="form-control" style= "max-width:100px;" name="cropOptionName" onchange="this.form.submit()" >
-                <option value="All">All Crop</option>
-                <option th:each="dropDownItem : ${distinctCrop}"
-                        th:value="${dropDownItem}"
-                        th:text="${dropDownItem}"
-                />
-            </select></td>
+            <td>Crop</td>
             <td>Pedigree</td>
             <td>Season</td>
             <td>Quantity Received</td>
             <td>Quantity Used</td>
             <td>Quantity Left</td>
-
         </tr>
         <tr th:each="inventory : ${inventory}" >
             <td th:text="${inventory.crop}"></td>
@@ -40,12 +35,9 @@
             <td th:text="${inventory.received}"></td>
             <td th:text="${inventory.used}"></td>
             <td th:text="${inventory.qLeft}"></td>
-
-
         </tr>
-
-
     </table>
+    <input type = "submit"/>
 </form>
 </body>
 </html>

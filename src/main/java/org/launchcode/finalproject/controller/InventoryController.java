@@ -3,6 +3,7 @@ package org.launchcode.finalproject.controller;
 import org.launchcode.finalproject.model.Inventory;
 import org.launchcode.finalproject.model.InventoryData;
 import org.launchcode.finalproject.model.data.InventoryDao;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,14 +24,13 @@ public class InventoryController {
     @Autowired
     private InventoryDao inventoryDao;
 
+
+
+
     @RequestMapping(value="")
     public String index(Model model){
         model.addAttribute("title","Seed Inventory Manager" );
         model.addAttribute("inventory" , inventoryDao.findAll());
-       // model.addAttribute("distinctCrop" , inventoryDao.getDistinctCropNames());
-        //model.addAttribute("distinctpedigree" , InventoryData.getDistinctPedigreeNames());
-        //model.addAttribute("distinctseason" , InventoryData.getDistinctSeasonNames());
-
         return "index";
     }
 
@@ -76,14 +76,16 @@ public class InventoryController {
 
         return "redirect:";
     }
-    @RequestMapping(value="search", method= RequestMethod.POST)
-    public String searchInventory(@RequestParam String cropOptionName, Model model){
+    @RequestMapping(value="search", method= RequestMethod.GET)
+    public String searchInventory( Model model){
+        model.addAttribute("title","Search Inventory Manager" );
+        model.addAttribute("inventory" , inventoryDao.findAll());
+        model.addAttribute("distinctCrop" , inventoryDao.findDistinctCrops());
+        //model.addAttribute("distinctpedigree" , InventoryData.getDistinctPedigreeNames());
+        //model.addAttribute("distinctseason" , InventoryData.getDistinctSeasonNames());
 
-        System.out.print("cropName - "+cropOptionName);
-        model.addAttribute("selectedCrop" , cropOptionName);
-
-        return "index";
-
+        return "search";
     }
+
 
 }

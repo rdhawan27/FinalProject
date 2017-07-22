@@ -10,30 +10,29 @@
 
 <body class="container">
 
-<h1 th:text = "${title}">Seed Inventor Manager</h1>
+<h1 th:text = "${title}">Seed Inventory Manager</h1>
 
+<a href ="/inventory/">Home</a> |
 <a href ="/inventory/add">Add</a> |
-<a href ="/inventory/remove">Remove</a>
+<a href ="/inventory/remove">Remove</a> |
+<a href ="/inventory/search">Search</a>
 
 <p></p>
-<form method= "post" action="/inventory/search">
+<form method= "post" >
     <table class="table" >
-        <tr ><select field="*{distinctcrop}" >
-            <td>
+        <tr>
+            <td th:field="*{distinctcrop}" ><select class="form-control" style= "max-width:100px;" name="cropOptionName" onchange="this.form.submit()" >
                 <option value="All">All Crop</option>
-                <option th:each="dropDownItem : ${distinctcrop}"
+                <option th:each="dropDownItem : ${distinctCrop}"
                         th:value="${dropDownItem}"
                         th:text="${dropDownItem}"
-                        th:name="${dropDownItem}"
                 />
-            </select >Crop</td>
+            </select></td>
             <td>Pedigree</td>
             <td>Season</td>
             <td>Quantity Received</td>
             <td>Quantity Used</td>
             <td>Quantity Left</td>
-
-
         </tr>
         <tr th:each="inventory : ${inventory}" >
             <td th:text="${inventory.crop}"></td>
@@ -41,12 +40,8 @@
             <td th:text="${inventory.season}"></td>
             <td th:text="${inventory.received}"></td>
             <td th:text="${inventory.used}"></td>
-            <td th:text="${inventory.getRemainingQuantity()}"></td>
-
-
+            <td th:text="${inventory.qLeft}"></td>
         </tr>
-
-
     </table>
     <input type = "submit"/>
 </form>
