@@ -24,9 +24,6 @@ public class InventoryController {
     @Autowired
     private InventoryDao inventoryDao;
 
-
-
-
     @RequestMapping(value="")
     public String index(Model model){
         model.addAttribute("title","Seed Inventory Manager" );
@@ -68,10 +65,7 @@ public class InventoryController {
     public String processInventoryRemoveForm(@RequestParam int[] invIds){
 
         for (int remInvId : invIds) {
-
-            //Inventory inv = inventoryDao.findOne(remInvId);
-
-            inventoryDao.delete(remInvId);
+        inventoryDao.delete(remInvId);
         }
 
         return "redirect:";
@@ -81,11 +75,26 @@ public class InventoryController {
         model.addAttribute("title","Search Inventory Manager" );
         model.addAttribute("inventory" , inventoryDao.findAll());
         model.addAttribute("distinctCrop" , inventoryDao.findDistinctCrops());
-        //model.addAttribute("distinctpedigree" , InventoryData.getDistinctPedigreeNames());
-        //model.addAttribute("distinctseason" , InventoryData.getDistinctSeasonNames());
+        model.addAttribute("distinctPedigree" , inventoryDao.findDistinctPedigree());
+        model.addAttribute("distinctSeason" , inventoryDao.findDistinctSeason());
 
         return "search";
     }
-
+    @RequestMapping(value="search", method= RequestMethod.POST)
+    public String processSearchInventory(Model model, @RequestParam String cropOptionName,
+                                         @RequestParam String pedigreeOptionName, @RequestParam String seasonOptionName){
+        model.addAttribute("title","Search Inventory Manager" );
+        if (cropOptionName.equals("All")& pedigreeOptionName.equals("All")& seasonOptionName.equals("All")){
+            model.addAttribute("inventory1" , inventoryDao.findAll());}
+        else if (!cropOptionName.equals("All")){
+        model.addAttribute("inventory1" , inventoryDao.findByCrop(cropOptionName));}
+        else if (!pedigreeOptionName.equals("All")){
+            model.addAttribute("inventory1" , inventoryDao.findByPedigree(pedigreeOptionName));}
+        else if (!seasonOptionName.equals("All")){
+            model.addAttribute("inventory1" , inventoryDao.findBySeason(seasonOptionName));}
+        //model.addAttribute("inventory2" , inventoryDao.findByPedigree(pedigreeOptionName));
+        //model.addAttribute("inventory3" , inventoryDao.findBySeason(seasonOptionName));
+    return "searchIndex";
+    }
 
 }

@@ -21,15 +21,29 @@
 <form method= "post" >
     <table class="table" >
         <tr>
-            <td th:field="*{distinctcrop}" ><select class="form-control" style= "max-width:100px;" name="cropOptionName" onchange="this.form.submit()" >
-                <option value="All">All Crop</option>
+            <td th:field="*{distinctCrop}" ><select class="form-control" style= "max-width:100px;" name="cropOptionName" onchange="this.form.submit()" >
+                <option value="All" name="All">All Crop</option>
                 <option th:each="dropDownItem : ${distinctCrop}"
                         th:value="${dropDownItem}"
                         th:text="${dropDownItem}"
                 />
             </select></td>
-            <td>Pedigree</td>
-            <td>Season</td>
+
+            <td th:field="*{distinctPedigree}" ><select class="form-control" style= "max-width:125px;" name="pedigreeOptionName" onchange="this.form.submit()" >
+                <option value="All" name="All">All pedigree</option>
+                <option th:each="dropDownItem : ${distinctPedigree}"
+                        th:value="${dropDownItem}"
+                        th:text="${dropDownItem}"
+                />
+            </select></td>
+
+            <td th:field="*{distinctSeason}" ><select class="form-control" style= "max-width:130px;" name="seasonOptionName" onchange="this.form.submit()" >
+                <option value="All" name="All">All Season</option>
+                <option th:each="dropDownItem : ${distinctSeason}"
+                        th:value="${dropDownItem}"
+                        th:text="${dropDownItem}"
+                />
+            </select></td>
             <td>Quantity Received</td>
             <td>Quantity Used</td>
             <td>Quantity Left</td>

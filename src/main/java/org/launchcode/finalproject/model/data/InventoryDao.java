@@ -19,5 +19,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface InventoryDao extends CrudRepository<Inventory, Integer> {
     @Query("SELECT DISTINCT crop FROM Inventory")
     List<String>findDistinctCrops();
+    List<Inventory> findByCrop(String crop);
+
+    @Query("SELECT DISTINCT pedigree FROM Inventory")
+    List<String>findDistinctPedigree();
+
+    List<Inventory> findByPedigree(String pedigree);
+
+    @Query("SELECT DISTINCT season FROM Inventory")
+    List<String>findDistinctSeason();
+
+    List<Inventory> findBySeason(String season);
 
 }
