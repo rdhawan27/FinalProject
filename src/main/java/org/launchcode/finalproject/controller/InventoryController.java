@@ -28,14 +28,14 @@ public class InventoryController {
     public String index(Model model){
         model.addAttribute("title","Seed Inventory Manager" );
         model.addAttribute("inventory" , inventoryDao.findAll());
-        return "index";
+        return "inventory/index";
     }
 
     @RequestMapping(value="add", method= RequestMethod.GET)
     public String addInventoryForm(Model model){
         model.addAttribute("title", "Add New Inventory");
         model.addAttribute(new Inventory());
-        return "add";
+        return "inventory/add";
     }
 
     @RequestMapping(value="add", method= RequestMethod.POST)
@@ -59,7 +59,7 @@ public class InventoryController {
 
         model.addAttribute("title", "Remove Inventory");
         model.addAttribute("inventory" , inventoryDao.findAll());
-        return "remove";}
+        return "inventory/remove";}
 
     @RequestMapping(value="remove", method= RequestMethod.POST)
     public String processInventoryRemoveForm(@RequestParam int[] invIds){
@@ -78,7 +78,7 @@ public class InventoryController {
         model.addAttribute("distinctPedigree" , inventoryDao.findDistinctPedigree());
         model.addAttribute("distinctSeason" , inventoryDao.findDistinctSeason());
 
-        return "search";
+        return "inventory/search";
     }
     @RequestMapping(value="search", method= RequestMethod.POST)
     public String processSearchInventory(Model model, @RequestParam String cropOptionName,
@@ -92,9 +92,8 @@ public class InventoryController {
             model.addAttribute("inventory1" , inventoryDao.findByPedigree(pedigreeOptionName));}
         else if (!seasonOptionName.equals("All")){
             model.addAttribute("inventory1" , inventoryDao.findBySeason(seasonOptionName));}
-        //model.addAttribute("inventory2" , inventoryDao.findByPedigree(pedigreeOptionName));
-        //model.addAttribute("inventory3" , inventoryDao.findBySeason(seasonOptionName));
-    return "searchIndex";
+
+    return "inventory/searchIndex";
     }
 
 }
